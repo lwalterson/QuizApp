@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator();
     "yellow",
     "black",
   ],
-  "correct": 0
+  "correct": "purple"
 },
   {
     "prompt": "What colors are on the Canadian flag?",
@@ -28,7 +28,7 @@ const Stack = createNativeStackNavigator();
     "purple",
     "white",
   ],
-  "correct": [0,3]
+  "correct": ["red","white"]
 },
   {
   "prompt": "All counrties use the standard rectangle flag.",
@@ -37,7 +37,7 @@ const Stack = createNativeStackNavigator();
     "True",
     "False",
   ],
-  "correct": 1
+  "correct": "False"
 },
 ]
 const isFirstRender = useRef(true);
@@ -83,6 +83,8 @@ const onAnswerSelected = (answer, index) => {
       { answerPicked > 0 ? (
     nextButton < 2 ? (
       <Button onPress={() => {
+    console.log('chosenAnswer:', chosenAnswer)
+    console.log('correct:', correct)
     setResult((prev) =>
       chosenAnswer
         ? { ...prev, score: prev.score + 1, correctAnswers: prev.correctAnswers + 1 }
@@ -107,7 +109,8 @@ function ResultsScreen({route}) {
   const { result } = route.params
 return(
   <View style={styles.container}>
-  <Text>{result.score}</Text>
+    <Text>Total Score</Text>
+  <Text>{result.score}/3</Text>
   </View>
 )
 }
